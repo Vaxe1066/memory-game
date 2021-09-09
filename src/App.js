@@ -63,12 +63,19 @@ function App() {
 
 
   const addClick = (event) => {
+    let keyClicked;
     let parent = event.target.className;
-    let parentDiv = document.querySelector(`.${parent}`);
-    let child = parentDiv.firstChild;
-    let childName = child.className
-    let idxRep = Number(childName.replace(/\D+/g, ''));
-    let keyClicked = Object.keys(images[idxRep])[0];
+    if(parent.indexOf("qt")!==-1){
+      let parentDiv = document.querySelector(`.${parent}`);
+      let child = parentDiv.firstChild;
+      let childName = child.className
+      let idxRep = Number(childName.replace(/\D+/g, ''));
+      keyClicked = Object.keys(images[idxRep])[0];
+    }
+    else if(parent.indexOf("qt")===-1){
+      let idxRep = Number(parent.replace(/\D+/g, ''));
+      keyClicked = Object.keys(images[idxRep])[0];
+    }
     setClicked([...clicked, keyClicked ]);
     reArange();
     
